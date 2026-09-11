@@ -1,0 +1,11 @@
+# Separate git repository, cloned here for convenience:
+#   https://github.com/tekinbicer/autonomous-ct-experimentation.git
+# It has its own history and remote and does not belong in this repo.
+projects/
+
+# Personal git-identity helpers.  These only run "git config user.name/email",
+# but they carry other people's personal addresses and this repository is
+# public.  set_francesco is tracked; the rest are deliberately not.
+set_alan
+set_alberto
+set_viktor

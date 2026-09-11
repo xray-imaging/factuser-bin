@@ -1,0 +1,108 @@
+#!/bin/bash
+# Commands needed by this script
+ECHO=echo
+ID=id
+PGREP=pgrep
+SCREEN=screen
+KILL=kill
+BASENAME=basename
+DIRNAME=dirname
+
+usage() {
+    ${ECHO} "Script to start, stop, and check status"
+    ${ECHO} "on soft IOCs for 19-BM"
+    ${ECHO} "Usage: $(${BASENAME} $0) IOC_name action"
+    ${ECHO} "IOC names: {Grasshopper3 | Oryx}"
+    ${ECHO} "IOC names: {TomoScan | TomoScanStream | TomoStream}"
+    ${ECHO} "IOC names: {TomoScan_Python | TomoScanStream_Python | TomoStream_Python}"
+    ${ECHO} "IOC names: {Dante | Mercury}"
+    ${ECHO} "IOC names: {Hexapod}"
+    ${ECHO} "IOC names: {LabJack}"
+    ${ECHO} "IOC names: {19bmSoft}"
+    ${ECHO} "Actions: {start | stop | restart | status | console}"
+}
+
+IOCname="_"
+action="_"
+if [ $# -eq 2 ]
+then
+    IOCname=$1
+    action=$2
+else
+    usage
+    exit 0   
+fi
+echo $IOCname 
+echo $action
+if [ $IOCname = "Oryx" ]
+then
+    IOCdir="/net/s7dserv/xorApps/epics/synApps_6_3/bm/ioc/7bm_AD/iocBoot/ioc7bmOryx/softioc"
+    IOCcommand="7bmOryx.pl"
+elif [ $IOCname = "Grasshopper3" ]
+then
+    IOCdir="/net/s19dserv/xorApps/epics/synApps_6_3/ioc/19bmGrasshopper3/iocBoot/ioc19bmGrasshopper3/softioc"
+    IOCcommand="19bmGrasshopper3.pl"
+elif [ $IOCname = "TomoScan" ]
+then
+    IOCdir="/home/beams/7BMB/epics-ts/synApps/support/tomoscan/iocBoot/iocTomoScan_7BM"
+    IOCcommand="auto_start.sh"
+elif [ $IOCname = "TomoScanStream" ]
+then
+    IOCdir="/home/beams/7BMB/epics-ts/synApps/support/tomoscan/iocBoot/iocTomoScanStream_7BM"
+    IOCcommand="auto_start.sh"
+elif [ $IOCname = "TomoStream" ]
+then
+    IOCdir="/home/beams/7BMB/epics-ts/synApps/support/tomostream/iocBoot/iocTomoStream_7BM"
+    IOCcommand="auto_start.sh"
+elif [ $IOCname = "TomoScan_Python" ]
+then
+    IOCdir="/home/beams/7BMB/epics-ts/synApps/support/tomoscan/iocBoot/iocTomoScan_7BM"
+    IOCcommand="auto_python.sh"
+elif [ $IOCname = "TomoScanStream_Python" ]
+then
+    IOCdir="/home/beams/7BMB/epics-ts/synApps/support/tomoscan/iocBoot/iocTomoScanStream_7BM"
+    IOCcommand="auto_python.sh"
+elif [ $IOCname = "TomoStream_Python" ]
+then
+    IOCdir="/home/beams/7BMB/epics-ts/synApps/support/tomostream/iocBoot/iocTomoStream_7BM"
+    IOCcommand="auto_python.sh"
+elif [ $IOCname = "Dante" ]
+then
+    IOCdir="/net/s7dserv/xorApps/epics/synApps_6_2/ioc/7bmDante/iocBoot/ioc7bmDante"
+    IOCcommand="7bmDante.sh"
+elif [ $IOCname = "Mercury" ]
+then
+    IOCdir="/net/s7dserv/xorApps/epics/synApps_6_2_1/ioc/dxp-R6-0/iocBoot/iocMercury"
+    IOCcommand="auto_start.sh"
+elif [ $IOCname = "BK" ]
+then
+    IOCdir="/net/s7dserv/xorApps/epics/synApps_6_2_1/ioc/7bmBK9181B/iocBoot/ioc7bmBK9181B/softioc"
+    IOCcommand="7bmBK9181B.sh"
+elif [ $IOCname = "Hexapod" ]
+then
+    IOCdir="/net/s7dserv/xorApps/epics/synApps_6_3/bm/ioc/7bmbHXP/iocBoot/ioc7bmbHXP/softioc"
+    IOCcommand="7bmbHXP.pl"
+elif [ $IOCname = "LabJack" ]
+then
+    IOCdir="/net/s19dserv/xorApps/epics/synApps_6_3/ioc/19bmLJ1/iocBoot/ioc19bmLJ1/softioc"
+    IOCcommand="19bmLJ1.pl"
+elif [ $IOCname = "19bmSoft" ]
+then
+    IOCdir="/net/s19dserv/xorApps/epics/synApps_6_3/ioc/19bmSoft/iocBoot/ioc19bmSoft/softioc"
+    IOCcommand="19bmSoft.pl"
+else
+    IOCcommand="_"
+fi
+
+#####################################################################
+if [ $IOCcommand = "_" ]
+then
+    ${ECHO} "Invalid IOC name"
+    exit 1
+fi
+echo $IOCdir
+echo $action
+echo $(pwd)
+cd ${IOCdir}
+echo $(pwd)
+./$IOCcommand $action
