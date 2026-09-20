@@ -7,10 +7,11 @@
 # ~/Software/ImageJ is on the shared home, so it is visible from all of them.
 #
 # WHERE YOU RUN THIS DECIDES WHERE THE IMAGES TRAVEL.  One full Vieworks frame
-# is 9568 x 6380 x 2 = 122,087,680 bytes.  Started on orco the stream stays on
-# the loopback interface; started anywhere else every frame crosses the network
-# off the machine that is also running the camera IOC, tomoScan and its server.
-# Prefer orco unless there is a reason not to.
+# is 9568 x 6380 x 2 = 122,087,680 bytes.  Normal use is from radon, the user
+# console, which means frames cross the network from orco -- that is the
+# intended arrangement and it works.  Running it on orco instead keeps the
+# stream on the loopback interface, which is worth knowing if bandwidth ever
+# becomes the limit.
 #
 # The installation came from 2-BM (Software/ImageJ_2bm, rsync'd 2026-09-19) and
 # carries EPICS_AD_Viewer (Channel Access) and EPICS_NTNDA_Viewer (pvAccess),
