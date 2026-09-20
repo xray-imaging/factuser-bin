@@ -1,0 +1,119 @@
+#!/bin/bash
+# Open the 19-BM tomography main screen.
+#
+# The 19-BM counterpart of 2-BM's start_tomo_scan.  Written in bash rather than
+# csh, and trimmed to what the simplified mct_main.adl here actually uses: no
+# mctoptics or energy screens, no second detector, and ADEuresys in place of
+# ADSpinnaker.
+
+ADL=/home/beams/FACTUSER/bin/adl
+TOMOSCAN=/home/beams/FACTUSER/epics/synApps/support/tomoscan
+AREA_DETECTOR=/APSshare/epics/synApps_6_3/support/areaDetector-R3-14
+MOTOR=/APSshare/epics/synApps_6_3/support/motor-R7-3-1
+
+# mct_main.adl opens related displays from several modules, so unlike the
+# tomoscan screens these cannot be found relative to the parent file.
+export EPICS_DISPLAY_PATH="$ADL\
+:$TOMOSCAN/tomoScanApp/op/adl\
+:$AREA_DETECTOR/ADEuresys/EuresysApp/op/adl\
+:$AREA_DETECTOR/ADGenICam/GenICamApp/op/adl\
+:$AREA_DETECTOR/ADCore/ADApp/op/adl\
+:$MOTOR/motorApp/op/adl"
+# No entry for another beamline's account here, deliberately.  detector_status.adl
+# and DTaggingUpdate.adl used to be read out of /home/beams/2BMB/bin/adl; local
+# copies now live in $ADL.  Both originate from mctoptics
+# (mctOpticsApp/op/adl/), which 19-BM does not install, so a local copy is the
+# right home for them rather than a path into a package we do not have.
+
+# --- tomoscan IOC -----------------------------------------------------------
+TS=19bm:
+TS_R=TomoScan:
+TS_BEAMLINE=tomoScan_19BM
+
+# --- optics metadata --------------------------------------------------------
+# At 2-BM this pair is the mctOptics prefix (P=2bm:, R=MCTOptics:).  19-BM has
+# no optics server: six of those nine records -- ScintillatorType,
+# ScintillatorThickness, ImagePixelSize, DetectorPixelSize, CameraObjective and
+# CameraTubeLength -- are plain records in the tomoscan IOC instead, so P/R
+# point there.  Camera0Bit, SuggestedAngles and SuggestedAngleStep are
+# mctOptics-only and stay disconnected.
+P=19bm:
+R=TomoScan:
+
+# --- tomoscan stream --------------------------------------------------------
+# 19-BM runs no stream IOC; these resolve but the widgets stay disconnected.
+TSS=19bm:
+TSS_R=TomoScanStream:
+
+# --- detector ---------------------------------------------------------------
+AD0=19bmVieworks:
+AD0_CAM=cam1:
+AD0_PROC1=Proc1:
+AD0_HDF=HDF1:
+AD0_MODEL=ViewWorks_VP61MX
+
+# --- motors -----------------------------------------------------------------
+# The screen drives seven axes through three prefixes.  At 2-BM they are:
+#
+#   $(P1)$(M3)   2bmb:m102     rotary stage
+#   $(P2)$(M5)   2bmb:m18      Z on top of the rotary
+#   $(P2)$(M6)   2bmb:m17      X on top of the rotary, called "0/180"
+#   $(P3)$(M1)   2bmHXP:m3     \
+#   $(P3)$(M2)   2bmHXP:m1      | the hexapod, under the rotary
+#   $(P3)$(M9)   2bmHXP:m4      |
+#   $(P3)$(M18)  2bmHXP:m5     /
+#
+# P1 is set: 19bmSoft:aero:m1 is the 19-BM rotary stage and works today.
+#
+# P3 is the hexapod, being moved here from 7-BM, where it is 7bmbHXP: with axes
+# m1 Z, m2 X, m3 Y, m4 A, m5 B, m6 C.  It has no 19-BM prefix yet.
+#
+# P2 is the X and Z pair that sits on top of the rotary.  Neither exists at
+# 19-BM yet, and they are separate hardware from the hexapod below the rotary,
+# so they will not arrive with it.
+#
+# P2 and P3 deliberately point at a prefix that does not exist, so those
+# widgets show disconnected.  Do not point them at 19bmSoft: and let the
+# numbers fall where they may -- m1-m4 there are white-beam slits and m5-m6 are
+# filters, so a wrong guess puts a live slit control on the tomography screen.
+P1=19bmSoft:
+M3=aero:m1
+
+# --- white-beam slits, 19-BM-A --------------------------------------------
+# The four blades are driven individually; M20-M23 are the screen's
+# X-/X+/Y-/Y+ slots.  "Inboard" and "outboard" follow the APS X convention:
+# positive X is outboard, away from the ring centre.  The live readbacks agree
+# with that reading -- the blades sit symmetric about zero at outboard +9.999,
+# inboard -9.999, top +2.500, bottom -2.500.
+#
+#   M20  X-  19bmSoft:m3  WB Slit Inboard
+#   M21  X+  19bmSoft:m1  WB Slit Outboard
+#   M22  Y-  19bmSoft:m4  WB Slit Bottom
+#   M23  Y+  19bmSoft:m2  WB Slit Top
+#
+# These are white-beam apertures.  The same four motors are also driven by the
+# Slit1H/Slit1V composite records in 19bmSoft (Slit1Hsize, Slit1Hcenter,
+# Slit1Vsize, Slit1Vcenter), so a blade moved here changes those too.
+M20=m3
+M21=m1
+M22=m4
+M23=m2
+
+P2=19bmTODO:
+M5=m5
+M6=m6
+
+P3=19bmTODO:
+M1=m1
+M2=m2
+M9=m9
+M18=m18
+
+MACROS="P=$P,R=$R"
+MACROS="$MACROS,TS=$TS,TS_R=$TS_R,TS_BEAMLINE=$TS_BEAMLINE,TSS=$TSS,TSS_R=$TSS_R"
+MACROS="$MACROS,AD0=$AD0,AD0_CAM=$AD0_CAM,AD0_PROC1=$AD0_PROC1,AD0_HDF=$AD0_HDF,AD0_MODEL=$AD0_MODEL"
+MACROS="$MACROS,P1=$P1,P2=$P2,P3=$P3"
+MACROS="$MACROS,M1=$M1,M2=$M2,M3=$M3,M5=$M5,M6=$M6,M9=$M9,M18=$M18"
+MACROS="$MACROS,M20=$M20,M21=$M21,M22=$M22,M23=$M23"
+
+medm -x -macro "$MACROS" "$ADL/mct_main.adl" &

@@ -9,3 +9,7 @@ projects/
 set_alan
 set_alberto
 set_viktor
+
+# Hand-made backup copies of MEDM screens.  Git history is the backup, and a
+# tracked copy only diverges from the screen it was taken from.
+*_BAK.adl
