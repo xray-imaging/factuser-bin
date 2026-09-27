@@ -102,6 +102,22 @@ display {
 	bclr=49
 	label="-IOCs"
 }
+"related display" {
+	object {
+		x=132
+		y=131
+		width=120
+		height=25
+	}
+	display[0] {
+		label="TomoScan"
+		name="tomoScan.adl"
+		args="P=$(TS), R=$(TS_R), BEAMLINE=$(TS_BEAMLINE)"
+	}
+	clr=14
+	bclr=31
+	label="-TomoScan"
+}
 text {
 	object {
 		x=15
@@ -6123,597 +6139,586 @@ composite {
 			}
 			command[0] {
 				label="dmagic"
-				name="bash /home/beams/2BMB/bin/dmagic.sh &"
+				name="bash /home/beams/FACTUSER/bin/dmagic.sh &"
 			}
 			clr=14
-			bclr=32
+			bclr=31
 			label="- Update"
 		}
 	}
 }
+"related display" {
+	object {
+		x=131
+		y=279
+		width=100
+		height=25
+	}
+	display[0] {
+		label="Detector status"
+		name="detector_status.adl"
+		args="AD=$(AD0),AD_CAM=$(AD0_CAM),AD_HDF=$(AD0_HDF),TS=$(TS),TS_R=$(TS_R),TS_BEAMLINE=$(TS_BEAMLINE),TSS=$(TSS),TSS_R=$(TSS_R)"
+	}
+	display[4] {
+		args=" "
+	}
+	clr=0
+	bclr=53
+	label="- Status"
+}
+text {
+	object {
+		x=31
+		y=279
+		width=100
+		height=25
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Camera"
+}
+"shell command" {
+	object {
+		x=31
+		y=309
+		width=100
+		height=25
+	}
+	command[0] {
+		label="imageJ start"
+		name="bash /home/beams/FACTUSER/bin/imagej.sh &"
+	}
+	clr=14
+	bclr=31
+	label="-ImageJ"
+}
+text {
+	object {
+		x=46
+		y=339
+		width=80
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Temp."
+	align="horiz. right"
+}
+rectangle {
+	object {
+		x=131
+		y=339
+		width=100
+		height=20
+	}
+	"basic attribute" {
+		clr=15
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A<45"
+		chan="$(AD0)cam1:TemperatureActual"
+	}
+}
+rectangle {
+	object {
+		x=131
+		y=339
+		width=100
+		height=20
+	}
+	"basic attribute" {
+		clr=20
+	}
+	"dynamic attribute" {
+		vis="calc"
+		calc="A>=45"
+		chan="$(AD0)cam1:TemperatureActual"
+	}
+}
+text {
+	object {
+		x=46
+		y=364
+		width=80
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Exposure"
+}
+"text entry" {
+	object {
+		x=131
+		y=364
+		width=100
+		height=20
+	}
+	control {
+		chan="$(AD0)$(AD0_CAM)AcquireTime"
+		clr=14
+		bclr=51
+	}
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=236
+		y=364
+		width=80
+		height=18
+	}
+	monitor {
+		chan="$(AD0)$(AD0_CAM)AcquireTime_RBV"
+		clr=54
+		bclr=4
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=11
+		y=414
+		width=70
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Acquire"
+	align="horiz. right"
+}
+text {
+	object {
+		x=101
+		y=394
+		width=100
+		height=20
+	}
+	"basic attribute" {
+		clr=30
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		calc="A"
+		chan="$(AD0)$(AD0_CAM)Acquire"
+	}
+	textix="Collecting"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=131
+		y=394
+		width=40
+		height=20
+	}
+	"basic attribute" {
+		clr=63
+	}
+	"dynamic attribute" {
+		vis="if zero"
+		calc="A"
+		chan="$(AD0)$(AD0_CAM)Acquire"
+	}
+	textix="Done"
+	align="horiz. centered"
+}
+"message button" {
+	object {
+		x=86
+		y=414
+		width=59
+		height=20
+	}
+	control {
+		chan="$(AD0)$(AD0_CAM)Acquire"
+		clr=14
+		bclr=51
+	}
+	label="Start"
+	press_msg="1"
+}
+"message button" {
+	object {
+		x=151
+		y=414
+		width=59
+		height=20
+	}
+	control {
+		chan="$(AD0)$(AD0_CAM)Acquire"
+		clr=14
+		bclr=51
+	}
+	label="Stop"
+	press_msg="0"
+}
+text {
+	object {
+		x=221
+		y=414
+		width=40
+		height=16
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="size "
+	align="horiz. right"
+}
+"text update" {
+	object {
+		x=256
+		y=414
+		width=50
+		height=20
+	}
+	monitor {
+		chan="$(AD0)$(AD0_CAM)SizeX_RBV"
+		clr=54
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=311
+		y=414
+		width=50
+		height=20
+	}
+	monitor {
+		chan="$(AD0)$(AD0_CAM)SizeY_RBV"
+		clr=54
+		bclr=4
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=471
+		y=347
+		width=1
+		height=10
+	}
+	"basic attribute" {
+		clr=14
+	}
+}
+text {
+	object {
+		x=371
+		y=314
+		width=150
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Recursive average"
+}
+menu {
+	object {
+		x=551
+		y=314
+		width=80
+		height=19
+	}
+	control {
+		chan="$(AD0)$(AD0_PROC1)EnableFilter"
+		clr=14
+		bclr=51
+	}
+}
+"text update" {
+	object {
+		x=636
+		y=314
+		width=62
+		height=18
+	}
+	monitor {
+		chan="$(AD0)$(AD0_PROC1)EnableFilter_RBV"
+		clr=54
+		bclr=12
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+text {
+	object {
+		x=461
+		y=339
+		width=80
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="N filter"
+	align="horiz. right"
+}
+"text entry" {
+	object {
+		x=551
+		y=339
+		width=80
+		height=19
+	}
+	control {
+		chan="$(AD0)$(AD0_PROC1)NumFilter"
+		clr=14
+		bclr=51
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=636
+		y=339
+		width=60
+		height=19
+	}
+	monitor {
+		chan="$(AD0)$(AD0_PROC1)NumFiltered_RBV"
+		clr=54
+		bclr=4
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=391
+		y=389
+		width=150
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Save flat field"
+	align="horiz. right"
+}
+"message button" {
+	object {
+		x=551
+		y=389
+		width=80
+		height=19
+	}
+	control {
+		chan="$(AD0)$(AD0_PROC1)SaveFlatField"
+		clr=14
+		bclr=51
+	}
+	label="Save"
+	press_msg="1"
+}
+"text update" {
+	object {
+		x=636
+		y=389
+		width=62
+		height=18
+	}
+	monitor {
+		chan="$(AD0)$(AD0_PROC1)ValidFlatField_RBV"
+		clr=54
+		bclr=4
+	}
+	format="string"
+	limits {
+	}
+}
+text {
+	object {
+		x=371
+		y=414
+		width=170
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Enable flat field"
+	align="horiz. right"
+}
+menu {
+	object {
+		x=551
+		y=414
+		width=80
+		height=19
+	}
+	control {
+		chan="$(AD0)$(AD0_PROC1)EnableFlatField"
+		clr=14
+		bclr=51
+	}
+}
+"text update" {
+	object {
+		x=636
+		y=414
+		width=62
+		height=18
+	}
+	monitor {
+		chan="$(AD0)$(AD0_PROC1)EnableFlatField_RBV"
+		clr=54
+		bclr=12
+	}
+	clrmod="alarm"
+	align="horiz. centered"
+	format="string"
+	limits {
+	}
+}
+text {
+	object {
+		x=421
+		y=364
+		width=120
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Reset filter"
+	align="horiz. right"
+}
+"message button" {
+	object {
+		x=551
+		y=364
+		width=80
+		height=19
+	}
+	control {
+		chan="$(AD0)$(AD0_PROC1)ResetFilter"
+		clr=14
+		bclr=51
+	}
+	label="Reset"
+	press_msg="1"
+}
+"related display" {
+	object {
+		x=131
+		y=309
+		width=100
+		height=25
+	}
+	display[0] {
+		label="Vieworks VP-61MX"
+		name="ADEuresys.adl"
+		args="P=$(AD0), R=$(AD0_CAM), C=$(AD0_MODEL)"
+	}
+	clr=14
+	bclr=31
+	label="-Detector"
+}
+text {
+	object {
+		x=251
+		y=287
+		width=150
+		height=15
+	}
+	"basic attribute" {
+		clr=20
+	}
+	textix="$(AD0)$(AD0_CAM)"
+}
 composite {
 	object {
-		x=1
-		y=267
-		width=715
-		height=175
+		x=446
+		y=277
+		width=260
+		height=20
 	}
 	"composite name"=""
 	children {
-		"related display" {
-			object {
-				x=131
-				y=279
-				width=100
-				height=25
-			}
-			display[0] {
-				label="Detector status"
-				name="detector_status.adl"
-				args="AD=$(AD0),AD_CAM=$(AD0_CAM),AD_HDF=$(AD0_HDF),TS=$(TS),TS_R=$(TS_R),TS_BEAMLINE=$(TS_BEAMLINE),TSS=$(TSS),TSS_R=$(TSS_R)"
-			}
-			display[4] {
-				args=" "
-			}
-			clr=0
-			bclr=53
-			label="- Status"
-		}
-		text {
-			object {
-				x=31
-				y=279
-				width=100
-				height=25
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Camera"
-		}
-		"shell command" {
-			object {
-				x=31
-				y=309
-				width=100
-				height=25
-			}
-			command[0] {
-				label="imageJ start"
-				name="bash /home/beams/FACTUSER/bin/imagej.sh &"
-			}
-			clr=14
-			bclr=31
-			label="-ImageJ"
-		}
-		text {
-			object {
-				x=46
-				y=339
-				width=80
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Temp."
-			align="horiz. right"
-		}
 		rectangle {
 			object {
-				x=131
-				y=339
-				width=100
+				x=466
+				y=277
+				width=220
 				height=20
 			}
 			"basic attribute" {
-				clr=15
-			}
-			"dynamic attribute" {
-				vis="calc"
-				calc="A<45"
-				chan="$(AD0)cam1:TemperatureActual"
-			}
-		}
-		rectangle {
-			object {
-				x=131
-				y=339
-				width=100
-				height=20
-			}
-			"basic attribute" {
-				clr=20
-			}
-			"dynamic attribute" {
-				vis="calc"
-				calc="A>=45"
-				chan="$(AD0)cam1:TemperatureActual"
+				clr=2
 			}
 		}
 		text {
-			object {
-				x=46
-				y=364
-				width=80
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Exposure"
-		}
-		"text entry" {
-			object {
-				x=131
-				y=364
-				width=100
-				height=20
-			}
-			control {
-				chan="$(AD0)$(AD0_CAM)AcquireTime"
-				clr=14
-				bclr=51
-			}
-			format="string"
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=236
-				y=364
-				width=80
-				height=18
-			}
-			monitor {
-				chan="$(AD0)$(AD0_CAM)AcquireTime_RBV"
-				clr=54
-				bclr=4
-			}
-			limits {
-			}
-		}
-		text {
-			object {
-				x=11
-				y=414
-				width=70
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Acquire"
-			align="horiz. right"
-		}
-		text {
-			object {
-				x=101
-				y=394
-				width=100
-				height=20
-			}
-			"basic attribute" {
-				clr=30
-			}
-			"dynamic attribute" {
-				vis="if not zero"
-				calc="A"
-				chan="$(AD0)$(AD0_CAM)Acquire"
-			}
-			textix="Collecting"
-			align="horiz. centered"
-		}
-		text {
-			object {
-				x=131
-				y=394
-				width=40
-				height=20
-			}
-			"basic attribute" {
-				clr=63
-			}
-			"dynamic attribute" {
-				vis="if zero"
-				calc="A"
-				chan="$(AD0)$(AD0_CAM)Acquire"
-			}
-			textix="Done"
-			align="horiz. centered"
-		}
-		"message button" {
-			object {
-				x=86
-				y=414
-				width=59
-				height=20
-			}
-			control {
-				chan="$(AD0)$(AD0_CAM)Acquire"
-				clr=14
-				bclr=51
-			}
-			label="Start"
-			press_msg="1"
-		}
-		"message button" {
-			object {
-				x=151
-				y=414
-				width=59
-				height=20
-			}
-			control {
-				chan="$(AD0)$(AD0_CAM)Acquire"
-				clr=14
-				bclr=51
-			}
-			label="Stop"
-			press_msg="0"
-		}
-		text {
-			object {
-				x=221
-				y=414
-				width=40
-				height=16
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="size "
-			align="horiz. right"
-		}
-		"text update" {
-			object {
-				x=256
-				y=414
-				width=50
-				height=20
-			}
-			monitor {
-				chan="$(AD0)$(AD0_CAM)SizeX_RBV"
-				clr=54
-				bclr=4
-			}
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=311
-				y=414
-				width=50
-				height=20
-			}
-			monitor {
-				chan="$(AD0)$(AD0_CAM)SizeY_RBV"
-				clr=54
-				bclr=4
-			}
-			limits {
-			}
-		}
-		text {
-			object {
-				x=471
-				y=347
-				width=1
-				height=10
-			}
-			"basic attribute" {
-				clr=14
-			}
-		}
-		text {
-			object {
-				x=371
-				y=314
-				width=150
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Recursive average"
-		}
-		menu {
-			object {
-				x=551
-				y=314
-				width=80
-				height=19
-			}
-			control {
-				chan="$(AD0)$(AD0_PROC1)EnableFilter"
-				clr=14
-				bclr=51
-			}
-		}
-		"text update" {
-			object {
-				x=636
-				y=314
-				width=62
-				height=18
-			}
-			monitor {
-				chan="$(AD0)$(AD0_PROC1)EnableFilter_RBV"
-				clr=54
-				bclr=12
-			}
-			clrmod="alarm"
-			align="horiz. centered"
-			format="string"
-			limits {
-			}
-		}
-		text {
-			object {
-				x=461
-				y=339
-				width=80
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="N filter"
-			align="horiz. right"
-		}
-		"text entry" {
-			object {
-				x=551
-				y=339
-				width=80
-				height=19
-			}
-			control {
-				chan="$(AD0)$(AD0_PROC1)NumFilter"
-				clr=14
-				bclr=51
-			}
-			limits {
-			}
-		}
-		"text update" {
-			object {
-				x=636
-				y=339
-				width=60
-				height=19
-			}
-			monitor {
-				chan="$(AD0)$(AD0_PROC1)NumFiltered_RBV"
-				clr=54
-				bclr=4
-			}
-			limits {
-			}
-		}
-		text {
-			object {
-				x=391
-				y=389
-				width=150
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Save flat field"
-			align="horiz. right"
-		}
-		"message button" {
-			object {
-				x=551
-				y=389
-				width=80
-				height=19
-			}
-			control {
-				chan="$(AD0)$(AD0_PROC1)SaveFlatField"
-				clr=14
-				bclr=51
-			}
-			label="Save"
-			press_msg="1"
-		}
-		"text update" {
-			object {
-				x=636
-				y=389
-				width=62
-				height=18
-			}
-			monitor {
-				chan="$(AD0)$(AD0_PROC1)ValidFlatField_RBV"
-				clr=54
-				bclr=4
-			}
-			format="string"
-			limits {
-			}
-		}
-		text {
-			object {
-				x=371
-				y=414
-				width=170
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Enable flat field"
-			align="horiz. right"
-		}
-		menu {
-			object {
-				x=551
-				y=414
-				width=80
-				height=19
-			}
-			control {
-				chan="$(AD0)$(AD0_PROC1)EnableFlatField"
-				clr=14
-				bclr=51
-			}
-		}
-		"text update" {
-			object {
-				x=636
-				y=414
-				width=62
-				height=18
-			}
-			monitor {
-				chan="$(AD0)$(AD0_PROC1)EnableFlatField_RBV"
-				clr=54
-				bclr=12
-			}
-			clrmod="alarm"
-			align="horiz. centered"
-			format="string"
-			limits {
-			}
-		}
-		text {
-			object {
-				x=421
-				y=364
-				width=120
-				height=20
-			}
-			"basic attribute" {
-				clr=14
-			}
-			textix="Reset filter"
-			align="horiz. right"
-		}
-		"message button" {
-			object {
-				x=551
-				y=364
-				width=80
-				height=19
-			}
-			control {
-				chan="$(AD0)$(AD0_PROC1)ResetFilter"
-				clr=14
-				bclr=51
-			}
-			label="Reset"
-			press_msg="1"
-		}
-		"related display" {
-			object {
-				x=131
-				y=309
-				width=100
-				height=25
-			}
-			display[0] {
-				label="Vieworks VP-61MX"
-				name="ADEuresys.adl"
-				args="P=$(AD0), R=$(AD0_CAM), C=$(AD0_MODEL)"
-			}
-			clr=14
-			bclr=31
-			label="-Detector"
-		}
-		text {
-			object {
-				x=251
-				y=287
-				width=150
-				height=15
-			}
-			"basic attribute" {
-				clr=20
-			}
-			textix="$(AD0)$(AD0_CAM)"
-		}
-		composite {
 			object {
 				x=446
 				y=277
 				width=260
 				height=20
 			}
-			"composite name"=""
-			children {
-				rectangle {
-					object {
-						x=466
-						y=277
-						width=220
-						height=20
-					}
-					"basic attribute" {
-						clr=2
-					}
-				}
-				text {
-					object {
-						x=446
-						y=277
-						width=260
-						height=20
-					}
-					"basic attribute" {
-						clr=54
-					}
-					textix="Flat field correction"
-					align="horiz. centered"
-				}
-			}
-		}
-		rectangle {
-			object {
-				x=1
-				y=267
-				width=715
-				height=175
-			}
 			"basic attribute" {
-				clr=14
-				fill="outline"
-				width=5
-			}
-		}
-		"text update" {
-			object {
-				x=236
-				y=339
-				width=80
-				height=18
-			}
-			monitor {
-				chan="$(AD0)$(AD0_CAM)TemperatureActual"
 				clr=54
-				bclr=4
 			}
-			limits {
-			}
+			textix="Flat field correction"
+			align="horiz. centered"
 		}
-		"text update" {
-			object {
-				x=211
-				y=397
-				width=81
-				height=18
-			}
-			monitor {
-				chan="$(AD0)$(AD0_CAM)NumImagesCounter_RBV"
-				clr=54
-				bclr=4
-			}
-			limits {
-			}
-		}
+	}
+}
+rectangle {
+	object {
+		x=1
+		y=267
+		width=715
+		height=175
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=5
+	}
+}
+"text update" {
+	object {
+		x=236
+		y=339
+		width=80
+		height=18
+	}
+	monitor {
+		chan="$(AD0)$(AD0_CAM)TemperatureActual"
+		clr=54
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=211
+		y=397
+		width=81
+		height=18
+	}
+	monitor {
+		chan="$(AD0)$(AD0_CAM)NumImagesCounter_RBV"
+		clr=54
+		bclr=4
+	}
+	limits {
 	}
 }
