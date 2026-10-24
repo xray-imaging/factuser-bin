@@ -65,17 +65,11 @@ AD0_MODEL=ViewWorks_VP61MX
 #
 # P1 is set: 19bmSoft:aero:m1 is the 19-BM rotary stage and works today.
 #
-# P3 is the hexapod, being moved here from 7-BM, where it is 7bmbHXP: with axes
-# m1 Z, m2 X, m3 Y, m4 A, m5 B, m6 C.  It has no 19-BM prefix yet.
+# P3 is the hexapod, which has been moved from 7-BM, with the prefix 19bmHXP: with axes
+# m1 X, m2 Y, m3 Z, m4 A, m5 B, m6 C.
 #
-# P2 is the X and Z pair that sits on top of the rotary.  Neither exists at
-# 19-BM yet, and they are separate hardware from the hexapod below the rotary,
-# so they will not arrive with it.
+# P2 is the X and Z pair that sits on top of the rotary, prefix 19bmSoft:.
 #
-# P2 and P3 deliberately point at a prefix that does not exist, so those
-# widgets show disconnected.  Do not point them at 19bmSoft: and let the
-# numbers fall where they may -- m1-m4 there are white-beam slits and m5-m6 are
-# filters, so a wrong guess puts a live slit control on the tomography screen.
 P1=19bmSoft:
 M3=aero:m1
 
@@ -99,15 +93,47 @@ M21=m1
 M22=m4
 M23=m2
 
-P2=19bmTODO:
-M5=m5
-M6=m6
+# --- hexapod base lift ------------------------------------------------------
+# M30 drives 19bmSoft:m23, "hex base Y" in the beamline motor list: the lift
+# the hexapod sits on, not one of the hexapod's own six axes (those are P3,
+# 19bmHXP:).  Same IOC as the slits, hence P1.
+#
+# Numbering starts at M30 for this group on purpose.  The macro number has
+# never matched the motor number on this screen (M1=m2, M20=m3, M5=m22), and
+# m17/m18/m24 are due to be added next -- M18 and M23 are already taken, so a
+# macro named after a motor number would eventually point at a different one.
+M30=m23
 
-P3=19bmTODO:
-M1=m1
-M2=m2
-M9=m9
-M18=m18
+# --- high-magnification optics ----------------------------------------------
+# Four more 19bmSoft steppers, from the beamline motor list.  Screen order is
+# left to right as they appear in the block.
+#
+#   M31  19bmSoft:m17  high mag focus
+#   M32  19bmSoft:m18  high mag camera rotation
+#   M33  19bmSoft:m24  Optics_X
+#   M34  19bmSoft:m11  Optics Y
+#
+# Optics_Z is NOT here: it is 19bmSoft:aero:m2, on the second Aerotech rather
+# than the stepper controller, so it does not belong in this group.
+M31=m17
+M32=m18
+M33=m24
+M34=m11
+
+# Optics_Z is the odd one in this group: it is on the second Aerotech
+# (19bmSoft:aero:m2), not the stepper controller, so the macro carries the
+# "aero:" segment the way M3 does for the rotation stage.  Same P1 prefix.
+M35=aero:m2
+
+P2=19bmSoft:
+M5=m22
+M6=m21
+
+P3=19bmHXP:
+M1=m2
+M2=m1
+M9=m4
+M18=m5
 
 MACROS="P=$P,R=$R"
 MACROS="$MACROS,TS=$TS,TS_R=$TS_R,TS_BEAMLINE=$TS_BEAMLINE,TSS=$TSS,TSS_R=$TSS_R"
@@ -115,5 +141,8 @@ MACROS="$MACROS,AD0=$AD0,AD0_CAM=$AD0_CAM,AD0_PROC1=$AD0_PROC1,AD0_HDF=$AD0_HDF,
 MACROS="$MACROS,P1=$P1,P2=$P2,P3=$P3"
 MACROS="$MACROS,M1=$M1,M2=$M2,M3=$M3,M5=$M5,M6=$M6,M9=$M9,M18=$M18"
 MACROS="$MACROS,M20=$M20,M21=$M21,M22=$M22,M23=$M23"
+MACROS="$MACROS,M30=$M30"
+MACROS="$MACROS,M31=$M31,M32=$M32,M33=$M33,M34=$M34"
+MACROS="$MACROS,M35=$M35"
 
 medm -x -macro "$MACROS" "$ADL/mct_main.adl" &

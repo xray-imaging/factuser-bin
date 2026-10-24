@@ -113,7 +113,7 @@ composite {
 						height=20
 					}
 					monitor {
-						chan="$(P1)$(M21).DESC"
+						chan="$(P1)$(M32).DESC"
 						clr=54
 						bclr=0
 					}
@@ -134,7 +134,7 @@ composite {
 					}
 					"dynamic attribute" {
 						vis="if zero"
-						chan="$(P1)$(M21).DMOV"
+						chan="$(P1)$(M32).DMOV"
 					}
 				}
 				rectangle {
@@ -150,7 +150,7 @@ composite {
 					}
 					"dynamic attribute" {
 						vis="if not zero"
-						chan="$(P1)$(M21).LVIO"
+						chan="$(P1)$(M32).LVIO"
 					}
 				}
 				rectangle {
@@ -166,7 +166,7 @@ composite {
 					}
 					"dynamic attribute" {
 						vis="if not zero"
-						chan="$(P1)$(M21)_able.VAL"
+						chan="$(P1)$(M32)_able.VAL"
 					}
 				}
 				rectangle {
@@ -194,7 +194,7 @@ composite {
 					}
 					"dynamic attribute" {
 						vis="if zero"
-						chan="$(P1)$(M21).DMOV"
+						chan="$(P1)$(M32).DMOV"
 					}
 					textix="Moving"
 					align="horiz. centered"
@@ -212,7 +212,7 @@ composite {
 					}
 					"dynamic attribute" {
 						vis="if not zero"
-						chan="$(P1)$(M21).SET"
+						chan="$(P1)$(M32).SET"
 					}
 					textix="Calibrate"
 					align="horiz. centered"
@@ -225,7 +225,7 @@ composite {
 						height=20
 					}
 					control {
-						chan="$(P1)$(M21).STOP"
+						chan="$(P1)$(M32).STOP"
 						clr=31
 						bclr=20
 					}
@@ -240,7 +240,7 @@ composite {
 						height=36
 					}
 					control {
-						chan="$(P1)$(M21).TWR"
+						chan="$(P1)$(M32).TWR"
 						clr=14
 						bclr=51
 					}
@@ -255,7 +255,7 @@ composite {
 						height=20
 					}
 					control {
-						chan="$(P1)$(M21).TWV"
+						chan="$(P1)$(M32).TWV"
 						clr=14
 						bclr=51
 					}
@@ -270,7 +270,7 @@ composite {
 						height=36
 					}
 					control {
-						chan="$(P1)$(M21).TWF"
+						chan="$(P1)$(M32).TWF"
 						clr=14
 						bclr=51
 					}
@@ -285,7 +285,7 @@ composite {
 						height=25
 					}
 					control {
-						chan="$(P1)$(M21).VAL"
+						chan="$(P1)$(M32).VAL"
 						clr=14
 						bclr=51
 					}
@@ -304,7 +304,7 @@ composite {
 					}
 					"dynamic attribute" {
 						vis="if not zero"
-						chan="$(P1)$(M21).LLS"
+						chan="$(P1)$(M32).LLS"
 					}
 				}
 				rectangle {
@@ -319,7 +319,7 @@ composite {
 					}
 					"dynamic attribute" {
 						vis="if not zero"
-						chan="$(P1)$(M21).HLS"
+						chan="$(P1)$(M32).HLS"
 					}
 				}
 				"text update" {
@@ -330,7 +330,7 @@ composite {
 						height=12
 					}
 					monitor {
-						chan="$(P1)$(M21).EGU"
+						chan="$(P1)$(M32).EGU"
 						clr=54
 						bclr=3
 					}
@@ -361,7 +361,7 @@ composite {
 						clr=0
 						fill="outline"
 					}
-					textix="($(P1)$(M21))"
+					textix="($(P1)$(M32))"
 					align="horiz. centered"
 				}
 				rectangle {
@@ -378,7 +378,7 @@ composite {
 					}
 					"dynamic attribute" {
 						vis="if not zero"
-						chan="$(P1)$(M21).SET"
+						chan="$(P1)$(M32).SET"
 					}
 				}
 				rectangle {
@@ -395,7 +395,7 @@ composite {
 					}
 					"dynamic attribute" {
 						vis="if not zero"
-						chan="$(P1)$(M21).SET"
+						chan="$(P1)$(M32).SET"
 					}
 				}
 				"text update" {
@@ -406,7 +406,7 @@ composite {
 						height=17
 					}
 					monitor {
-						chan="$(P1)$(M21).RBV"
+						chan="$(P1)$(M32).RBV"
 						clr=54
 						bclr=3
 					}
@@ -427,7 +427,7 @@ composite {
 					}
 					"dynamic attribute" {
 						vis="if not zero"
-						chan="$(P1)$(M21).LVIO"
+						chan="$(P1)$(M32).LVIO"
 					}
 					textix="Soft limit"
 					align="horiz. centered"
@@ -447,7 +447,7 @@ composite {
 					}
 					"dynamic attribute" {
 						vis="if not zero"
-						chan="$(P1)$(M21)_able.VAL"
+						chan="$(P1)$(M32)_able.VAL"
 					}
 				}
 				"choice button" {
@@ -458,7 +458,7 @@ composite {
 						height=20
 					}
 					control {
-						chan="$(P1)$(M21).SET"
+						chan="$(P1)$(M32).SET"
 						clr=14
 						bclr=51
 					}
@@ -472,7 +472,7 @@ composite {
 						height=20
 					}
 					control {
-						chan="$(P1)$(M21)_able.VAL"
+						chan="$(P1)$(M32)_able.VAL"
 						clr=14
 						bclr=51
 					}
@@ -488,7 +488,7 @@ composite {
 					display[0] {
 						label="Debug"
 						name="motorx_all.adl"
-						args="P=$(P1), M=$(M21)"
+						args="P=$(P1), M=$(M32)"
 					}
 					clr=0
 					bclr=18
@@ -522,7 +522,7 @@ composite {
 								height=20
 							}
 							monitor {
-								chan="$(P1)$(M22).DESC"
+								chan="$(P1)$(M33).DESC"
 								clr=54
 								bclr=0
 							}
@@ -543,7 +543,7 @@ composite {
 							}
 							"dynamic attribute" {
 								vis="if zero"
-								chan="$(P1)$(M22).DMOV"
+								chan="$(P1)$(M33).DMOV"
 							}
 						}
 						rectangle {
@@ -559,7 +559,7 @@ composite {
 							}
 							"dynamic attribute" {
 								vis="if not zero"
-								chan="$(P1)$(M22).LVIO"
+								chan="$(P1)$(M33).LVIO"
 							}
 						}
 						rectangle {
@@ -575,7 +575,7 @@ composite {
 							}
 							"dynamic attribute" {
 								vis="if not zero"
-								chan="$(P1)$(M22)_able.VAL"
+								chan="$(P1)$(M33)_able.VAL"
 							}
 						}
 						rectangle {
@@ -603,7 +603,7 @@ composite {
 							}
 							"dynamic attribute" {
 								vis="if zero"
-								chan="$(P1)$(M22).DMOV"
+								chan="$(P1)$(M33).DMOV"
 							}
 							textix="Moving"
 							align="horiz. centered"
@@ -621,7 +621,7 @@ composite {
 							}
 							"dynamic attribute" {
 								vis="if not zero"
-								chan="$(P1)$(M22).SET"
+								chan="$(P1)$(M33).SET"
 							}
 							textix="Calibrate"
 							align="horiz. centered"
@@ -634,7 +634,7 @@ composite {
 								height=20
 							}
 							control {
-								chan="$(P1)$(M22).STOP"
+								chan="$(P1)$(M33).STOP"
 								clr=31
 								bclr=20
 							}
@@ -649,7 +649,7 @@ composite {
 								height=36
 							}
 							control {
-								chan="$(P1)$(M22).TWR"
+								chan="$(P1)$(M33).TWR"
 								clr=14
 								bclr=51
 							}
@@ -664,7 +664,7 @@ composite {
 								height=20
 							}
 							control {
-								chan="$(P1)$(M22).TWV"
+								chan="$(P1)$(M33).TWV"
 								clr=14
 								bclr=51
 							}
@@ -679,7 +679,7 @@ composite {
 								height=36
 							}
 							control {
-								chan="$(P1)$(M22).TWF"
+								chan="$(P1)$(M33).TWF"
 								clr=14
 								bclr=51
 							}
@@ -694,7 +694,7 @@ composite {
 								height=25
 							}
 							control {
-								chan="$(P1)$(M22).VAL"
+								chan="$(P1)$(M33).VAL"
 								clr=14
 								bclr=51
 							}
@@ -713,7 +713,7 @@ composite {
 							}
 							"dynamic attribute" {
 								vis="if not zero"
-								chan="$(P1)$(M22).LLS"
+								chan="$(P1)$(M33).LLS"
 							}
 						}
 						rectangle {
@@ -728,7 +728,7 @@ composite {
 							}
 							"dynamic attribute" {
 								vis="if not zero"
-								chan="$(P1)$(M22).HLS"
+								chan="$(P1)$(M33).HLS"
 							}
 						}
 						"text update" {
@@ -739,7 +739,7 @@ composite {
 								height=12
 							}
 							monitor {
-								chan="$(P1)$(M22).EGU"
+								chan="$(P1)$(M33).EGU"
 								clr=54
 								bclr=3
 							}
@@ -770,7 +770,7 @@ composite {
 								clr=0
 								fill="outline"
 							}
-							textix="($(P1)$(M22))"
+							textix="($(P1)$(M33))"
 							align="horiz. centered"
 						}
 						rectangle {
@@ -787,7 +787,7 @@ composite {
 							}
 							"dynamic attribute" {
 								vis="if not zero"
-								chan="$(P1)$(M22).SET"
+								chan="$(P1)$(M33).SET"
 							}
 						}
 						rectangle {
@@ -804,7 +804,7 @@ composite {
 							}
 							"dynamic attribute" {
 								vis="if not zero"
-								chan="$(P1)$(M22).SET"
+								chan="$(P1)$(M33).SET"
 							}
 						}
 						"text update" {
@@ -815,7 +815,7 @@ composite {
 								height=17
 							}
 							monitor {
-								chan="$(P1)$(M22).RBV"
+								chan="$(P1)$(M33).RBV"
 								clr=54
 								bclr=3
 							}
@@ -836,7 +836,7 @@ composite {
 							}
 							"dynamic attribute" {
 								vis="if not zero"
-								chan="$(P1)$(M22).LVIO"
+								chan="$(P1)$(M33).LVIO"
 							}
 							textix="Soft limit"
 							align="horiz. centered"
@@ -856,7 +856,7 @@ composite {
 							}
 							"dynamic attribute" {
 								vis="if not zero"
-								chan="$(P1)$(M22)_able.VAL"
+								chan="$(P1)$(M33)_able.VAL"
 							}
 						}
 						"choice button" {
@@ -867,7 +867,7 @@ composite {
 								height=20
 							}
 							control {
-								chan="$(P1)$(M22).SET"
+								chan="$(P1)$(M33).SET"
 								clr=14
 								bclr=51
 							}
@@ -881,7 +881,7 @@ composite {
 								height=20
 							}
 							control {
-								chan="$(P1)$(M22)_able.VAL"
+								chan="$(P1)$(M33)_able.VAL"
 								clr=14
 								bclr=51
 							}
@@ -897,7 +897,7 @@ composite {
 							display[0] {
 								label="Debug"
 								name="motorx_all.adl"
-								args="P=$(P1), M=$(M22)"
+								args="P=$(P1), M=$(M33)"
 							}
 							clr=0
 							bclr=18
@@ -922,7 +922,7 @@ composite {
 								height=20
 							}
 							monitor {
-								chan="$(P1)$(M23).DESC"
+								chan="$(P1)$(M34).DESC"
 								clr=54
 								bclr=0
 							}
@@ -943,7 +943,7 @@ composite {
 							}
 							"dynamic attribute" {
 								vis="if zero"
-								chan="$(P1)$(M23).DMOV"
+								chan="$(P1)$(M34).DMOV"
 							}
 						}
 						rectangle {
@@ -959,7 +959,7 @@ composite {
 							}
 							"dynamic attribute" {
 								vis="if not zero"
-								chan="$(P1)$(M23).LVIO"
+								chan="$(P1)$(M34).LVIO"
 							}
 						}
 						rectangle {
@@ -975,7 +975,7 @@ composite {
 							}
 							"dynamic attribute" {
 								vis="if not zero"
-								chan="$(P1)$(M23)_able.VAL"
+								chan="$(P1)$(M34)_able.VAL"
 							}
 						}
 						rectangle {
@@ -1003,7 +1003,7 @@ composite {
 							}
 							"dynamic attribute" {
 								vis="if zero"
-								chan="$(P1)$(M23).DMOV"
+								chan="$(P1)$(M34).DMOV"
 							}
 							textix="Moving"
 							align="horiz. centered"
@@ -1021,7 +1021,7 @@ composite {
 							}
 							"dynamic attribute" {
 								vis="if not zero"
-								chan="$(P1)$(M23).SET"
+								chan="$(P1)$(M34).SET"
 							}
 							textix="Calibrate"
 							align="horiz. centered"
@@ -1034,7 +1034,7 @@ composite {
 								height=20
 							}
 							control {
-								chan="$(P1)$(M23).STOP"
+								chan="$(P1)$(M34).STOP"
 								clr=31
 								bclr=20
 							}
@@ -1049,7 +1049,7 @@ composite {
 								height=36
 							}
 							control {
-								chan="$(P1)$(M23).TWR"
+								chan="$(P1)$(M34).TWR"
 								clr=14
 								bclr=51
 							}
@@ -1064,7 +1064,7 @@ composite {
 								height=20
 							}
 							control {
-								chan="$(P1)$(M23).TWV"
+								chan="$(P1)$(M34).TWV"
 								clr=14
 								bclr=51
 							}
@@ -1079,7 +1079,7 @@ composite {
 								height=36
 							}
 							control {
-								chan="$(P1)$(M23).TWF"
+								chan="$(P1)$(M34).TWF"
 								clr=14
 								bclr=51
 							}
@@ -1094,7 +1094,7 @@ composite {
 								height=25
 							}
 							control {
-								chan="$(P1)$(M23).VAL"
+								chan="$(P1)$(M34).VAL"
 								clr=14
 								bclr=51
 							}
@@ -1113,7 +1113,7 @@ composite {
 							}
 							"dynamic attribute" {
 								vis="if not zero"
-								chan="$(P1)$(M23).LLS"
+								chan="$(P1)$(M34).LLS"
 							}
 						}
 						rectangle {
@@ -1128,7 +1128,7 @@ composite {
 							}
 							"dynamic attribute" {
 								vis="if not zero"
-								chan="$(P1)$(M23).HLS"
+								chan="$(P1)$(M34).HLS"
 							}
 						}
 						"text update" {
@@ -1139,7 +1139,7 @@ composite {
 								height=12
 							}
 							monitor {
-								chan="$(P1)$(M23).EGU"
+								chan="$(P1)$(M34).EGU"
 								clr=54
 								bclr=3
 							}
@@ -1170,7 +1170,7 @@ composite {
 								clr=0
 								fill="outline"
 							}
-							textix="($(P1)$(M23))"
+							textix="($(P1)$(M34))"
 							align="horiz. centered"
 						}
 						rectangle {
@@ -1187,7 +1187,7 @@ composite {
 							}
 							"dynamic attribute" {
 								vis="if not zero"
-								chan="$(P1)$(M23).SET"
+								chan="$(P1)$(M34).SET"
 							}
 						}
 						rectangle {
@@ -1204,7 +1204,7 @@ composite {
 							}
 							"dynamic attribute" {
 								vis="if not zero"
-								chan="$(P1)$(M23).SET"
+								chan="$(P1)$(M34).SET"
 							}
 						}
 						"text update" {
@@ -1215,7 +1215,7 @@ composite {
 								height=17
 							}
 							monitor {
-								chan="$(P1)$(M23).RBV"
+								chan="$(P1)$(M34).RBV"
 								clr=54
 								bclr=3
 							}
@@ -1236,7 +1236,7 @@ composite {
 							}
 							"dynamic attribute" {
 								vis="if not zero"
-								chan="$(P1)$(M23).LVIO"
+								chan="$(P1)$(M34).LVIO"
 							}
 							textix="Soft limit"
 							align="horiz. centered"
@@ -1256,7 +1256,7 @@ composite {
 							}
 							"dynamic attribute" {
 								vis="if not zero"
-								chan="$(P1)$(M23)_able.VAL"
+								chan="$(P1)$(M34)_able.VAL"
 							}
 						}
 						"choice button" {
@@ -1267,7 +1267,7 @@ composite {
 								height=20
 							}
 							control {
-								chan="$(P1)$(M23).SET"
+								chan="$(P1)$(M34).SET"
 								clr=14
 								bclr=51
 							}
@@ -1281,7 +1281,7 @@ composite {
 								height=20
 							}
 							control {
-								chan="$(P1)$(M23)_able.VAL"
+								chan="$(P1)$(M34)_able.VAL"
 								clr=14
 								bclr=51
 							}
@@ -1297,7 +1297,7 @@ composite {
 							display[0] {
 								label="Debug"
 								name="motorx_all.adl"
-								args="P=$(P1), M=$(M23)"
+								args="P=$(P1), M=$(M34)"
 							}
 							clr=0
 							bclr=18
@@ -1326,7 +1326,7 @@ composite {
 				height=20
 			}
 			monitor {
-				chan="$(P1)$(M20).DESC"
+				chan="$(P1)$(M31).DESC"
 				clr=54
 				bclr=0
 			}
@@ -1347,7 +1347,7 @@ composite {
 			}
 			"dynamic attribute" {
 				vis="if zero"
-				chan="$(P1)$(M20).DMOV"
+				chan="$(P1)$(M31).DMOV"
 			}
 		}
 		rectangle {
@@ -1363,7 +1363,7 @@ composite {
 			}
 			"dynamic attribute" {
 				vis="if not zero"
-				chan="$(P1)$(M20).LVIO"
+				chan="$(P1)$(M31).LVIO"
 			}
 		}
 		rectangle {
@@ -1379,7 +1379,7 @@ composite {
 			}
 			"dynamic attribute" {
 				vis="if not zero"
-				chan="$(P1)$(M20)_able.VAL"
+				chan="$(P1)$(M31)_able.VAL"
 			}
 		}
 		rectangle {
@@ -1407,7 +1407,7 @@ composite {
 			}
 			"dynamic attribute" {
 				vis="if zero"
-				chan="$(P1)$(M20).DMOV"
+				chan="$(P1)$(M31).DMOV"
 			}
 			textix="Moving"
 			align="horiz. centered"
@@ -1425,7 +1425,7 @@ composite {
 			}
 			"dynamic attribute" {
 				vis="if not zero"
-				chan="$(P1)$(M20).SET"
+				chan="$(P1)$(M31).SET"
 			}
 			textix="Calibrate"
 			align="horiz. centered"
@@ -1438,7 +1438,7 @@ composite {
 				height=20
 			}
 			control {
-				chan="$(P1)$(M20).STOP"
+				chan="$(P1)$(M31).STOP"
 				clr=31
 				bclr=20
 			}
@@ -1453,7 +1453,7 @@ composite {
 				height=36
 			}
 			control {
-				chan="$(P1)$(M20).TWR"
+				chan="$(P1)$(M31).TWR"
 				clr=14
 				bclr=51
 			}
@@ -1468,7 +1468,7 @@ composite {
 				height=20
 			}
 			control {
-				chan="$(P1)$(M20).TWV"
+				chan="$(P1)$(M31).TWV"
 				clr=14
 				bclr=51
 			}
@@ -1483,7 +1483,7 @@ composite {
 				height=36
 			}
 			control {
-				chan="$(P1)$(M20).TWF"
+				chan="$(P1)$(M31).TWF"
 				clr=14
 				bclr=51
 			}
@@ -1498,7 +1498,7 @@ composite {
 				height=25
 			}
 			control {
-				chan="$(P1)$(M20).VAL"
+				chan="$(P1)$(M31).VAL"
 				clr=14
 				bclr=51
 			}
@@ -1517,7 +1517,7 @@ composite {
 			}
 			"dynamic attribute" {
 				vis="if not zero"
-				chan="$(P1)$(M20).LLS"
+				chan="$(P1)$(M31).LLS"
 			}
 		}
 		rectangle {
@@ -1532,7 +1532,7 @@ composite {
 			}
 			"dynamic attribute" {
 				vis="if not zero"
-				chan="$(P1)$(M20).HLS"
+				chan="$(P1)$(M31).HLS"
 			}
 		}
 		"text update" {
@@ -1543,7 +1543,7 @@ composite {
 				height=12
 			}
 			monitor {
-				chan="$(P1)$(M20).EGU"
+				chan="$(P1)$(M31).EGU"
 				clr=54
 				bclr=3
 			}
@@ -1574,7 +1574,7 @@ composite {
 				clr=0
 				fill="outline"
 			}
-			textix="($(P1)$(M20))"
+			textix="($(P1)$(M31))"
 			align="horiz. centered"
 		}
 		rectangle {
@@ -1591,7 +1591,7 @@ composite {
 			}
 			"dynamic attribute" {
 				vis="if not zero"
-				chan="$(P1)$(M20).SET"
+				chan="$(P1)$(M31).SET"
 			}
 		}
 		rectangle {
@@ -1608,7 +1608,7 @@ composite {
 			}
 			"dynamic attribute" {
 				vis="if not zero"
-				chan="$(P1)$(M20).SET"
+				chan="$(P1)$(M31).SET"
 			}
 		}
 		"text update" {
@@ -1619,7 +1619,7 @@ composite {
 				height=17
 			}
 			monitor {
-				chan="$(P1)$(M20).RBV"
+				chan="$(P1)$(M31).RBV"
 				clr=54
 				bclr=3
 			}
@@ -1640,7 +1640,7 @@ composite {
 			}
 			"dynamic attribute" {
 				vis="if not zero"
-				chan="$(P1)$(M20).LVIO"
+				chan="$(P1)$(M31).LVIO"
 			}
 			textix="Soft limit"
 			align="horiz. centered"
@@ -1660,7 +1660,7 @@ composite {
 			}
 			"dynamic attribute" {
 				vis="if not zero"
-				chan="$(P1)$(M20)_able.VAL"
+				chan="$(P1)$(M31)_able.VAL"
 			}
 		}
 		"choice button" {
@@ -1671,7 +1671,7 @@ composite {
 				height=20
 			}
 			control {
-				chan="$(P1)$(M20).SET"
+				chan="$(P1)$(M31).SET"
 				clr=14
 				bclr=51
 			}
@@ -1685,7 +1685,7 @@ composite {
 				height=20
 			}
 			control {
-				chan="$(P1)$(M20)_able.VAL"
+				chan="$(P1)$(M31)_able.VAL"
 				clr=14
 				bclr=51
 			}
@@ -1701,7 +1701,7 @@ composite {
 			display[0] {
 				label="Debug"
 				name="motorx_all.adl"
-				args="P=$(P1), M=$(M20)"
+				args="P=$(P1), M=$(M31)"
 			}
 			clr=0
 			bclr=18
