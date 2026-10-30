@@ -7535,6 +7535,22 @@ composite {
 			bclr=31
 			label="-Slit motors"
 		}
+		"related display" {
+			object {
+				x=1150
+				y=894
+				width=120
+				height=25
+			}
+			display[0] {
+				label="Hexapod motors"
+				name="HexapodMotors.adl"
+				args="P3=$(P3)"
+			}
+			clr=14
+			bclr=31
+			label="-Hexapod motors"
+		}
 		rectangle {
 			object {
 				x=1074
