@@ -118,6 +118,29 @@ display {
 	bclr=31
 	label="-TomoScan"
 }
+"shell command" {
+	object {
+		x=132
+		y=98
+		width=120
+		height=25
+	}
+	command[0] {
+		label="Camera 1"
+		name="firefox http://10.54.129.31 &"
+	}
+	command[1] {
+		label="Camera 2"
+		name="firefox http://10.54.129.32 &"
+	}
+	command[2] {
+		label="Camera 3"
+		name="firefox http://10.54.129.33 &"
+	}
+	clr=0
+	bclr=49
+	label="-    WebCam"
+}
 text {
 	object {
 		x=15
